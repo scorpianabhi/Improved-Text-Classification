@@ -17,7 +17,7 @@
 int *A,*B,*C,*D,*E,*F,*G,*H,*I,*J,*K,*L,*M ,*N,*O,*P,*Q ,*R,*S,*T,*U,*V,*W,*X,*Y,*Z,*Blank;
 
 char *kernel_ptr, *source_ptr;
-char *project_path= "/Users/anoja/Documents/Project2/Project2/";
+char project_path[200] = "/Users/anoja/Documents/Project2/Project2/";
 
 void initialize(){
     A = (int*)malloc(sizeof(int)*LIST_SIZE);
@@ -159,9 +159,11 @@ long read_source_file(char* file_path){
 
 int* exe(char* file_path)
 {
+    char *path= (char*)calloc(150, sizeof(char));
+    path[0] = '\0';
+    strcat(path, "my_kernel.cl");
+    size_t kernel_size = read_kernel(strcat(project_path,path));
     
-    size_t kernel_size = read_kernel("/Users/anoja/Documents/Project2/Project2/my_kernel.cl");
-    //size_t kernel_size = read_kernel("/Users/neelvekaria/Documents/OpenCL/sample4/sample4/vector_add_kernel.cl");
     N_GRAM=0;
     long file_size = read_source_file(file_path);
     char source_ptr2[(file_size - (N_GRAM-1) )*N_GRAM];
@@ -1001,9 +1003,8 @@ int main(void) {
     for(int w=0; w<8; w++)
     {
         path[0] = '\0';
-        strcat(path, "/Users/anoja/Documents/Project2/Project2/train1/");
-
-       // strcat(path, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/train1/");
+        strcat(path, project_path);
+        strcat(path, "train1/");
         strcat(path, train[w]);
         strcat(path, ".txt");
         printf("Loaded traning file %s \n", path);
@@ -1078,9 +1079,7 @@ int main(void) {
             case 0:
                 for(int i=0; i<696; i++)
                 {
-                    path1[0] = '\0';
-                    //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
+                    
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1088,8 +1087,6 @@ int main(void) {
                     printf("\nLoaded testing file %s \n", path1);
                     //   file_size = read_source_file(path);
                     out0 = exe(path1);
-                    
-                    // out0 = exe(path1);
                     for(int i=0;i<LIST_SIZE;i++){
                         testvector[i]=out0[i];
                     }
@@ -1108,7 +1105,8 @@ int main(void) {
                 {
                     path1[0] = '\0';
                     //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1134,8 +1132,8 @@ int main(void) {
                 for(int i=0; i<1083; i++)
                 {
                     path1[0] = '\0';
-                    //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1160,8 +1158,8 @@ int main(void) {
                 for(int i=0; i<10; i++)
                 {
                     path1[0] = '\0';
-                    //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1187,8 +1185,8 @@ int main(void) {
                 for(int i=0; i<81; i++)
                 {
                     path1[0] = '\0';
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
-                    //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1214,8 +1212,8 @@ int main(void) {
                 for(int i=0; i<87; i++)
                 {
                     path1[0] = '\0';
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
-                    //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1241,8 +1239,8 @@ int main(void) {
                 for(int i=0; i<36; i++)
                 {
                     path1[0] = '\0';
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
-                    //strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
@@ -1268,8 +1266,8 @@ int main(void) {
                 for(int i=0; i<75; i++)
                 {
                     path1[0] = '\0';
-                    strcat(path1, "/Users/anoja/Documents/Project2/Project2/test/");
-                   // strcat(path1, "/Users/neelvekaria/Documents/OpenCL/sample4/sample4/test/");
+                    strcat(path, project_path);
+                    strcat(path, "test/");
                     strcat(path1, test[w]);
                     sprintf(num,"%d",i);
                     strcat(path1, num);
